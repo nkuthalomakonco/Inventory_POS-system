@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Inventory_POS_system.ViewModels;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,8 @@ namespace Inventory_POS_system
         public MainWindow()
         {
             InitializeComponent();
+            //this.DataContext = new InventoryViewModel(); 
+            DataContext = new MainViewModel();
         }
     }
 }
