@@ -17,10 +17,26 @@ namespace Inventory_POS_system
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainViewModel _mainVM;
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            _mainVM = new MainViewModel();
+            DataContext = _mainVM;
+
+            // Navigate to default page
+            MainFrame.Navigate(new InventoryPage(_mainVM.InventoryVM));
+        }
+
+        private void InventoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new InventoryPage(_mainVM.InventoryVM));
+        }
+
+        private void POSButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new POSPage(_mainVM.POSVM));
         }
     }
 }

@@ -5,18 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inventory_POS_system.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Inventory POS System" Height="600" Width="1000" WindowStartupLocation="CenterScreen">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
+    <DockPanel>
+        <!-- Navigation buttons at top -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">
+            <Button Content="Inventory" Width="100" Margin="5" Click="InventoryButton_Click"/>
+            <Button Content="POS" Width="100" Margin="5" Click="POSButton_Click"/>
+        </StackPanel>
 
-        <!-- InventoryView -->
-        <local:InventoryView DataContext="{Binding InventoryVM}" Grid.Column="0" />
-
-        <!-- POSView -->
-        <local:POSView DataContext="{Binding POSVM}" Grid.Column="1" />
-    </Grid>
+        <!-- Frame to host Pages -->
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+    </DockPanel>
 </Window>

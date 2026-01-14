@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inventory_POS_system.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace Inventory_POS_system.Views
     /// </summary>
     public partial class InventoryView : Page
     {
-        public InventoryView()
+        public InventoryView(InventoryViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }
