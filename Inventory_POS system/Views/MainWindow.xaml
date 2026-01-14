@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inventory_POS_system.Views"
         mc:Ignorable="d"
-        Title="Inventory POS System" Height="600" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="Inventory POS System" Height="800" Width="1000" WindowStartupLocation="CenterScreen">
 
     <DockPanel>
         <!-- Navigation buttons at top -->

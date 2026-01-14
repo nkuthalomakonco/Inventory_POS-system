@@ -1,4 +1,5 @@
 ﻿using Inventory_POS_system.ViewModels;
+using Inventory_POS_system.Views;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,17 +27,18 @@ namespace Inventory_POS_system
             DataContext = _mainVM;
 
             // Navigate to default page
-            MainFrame.Navigate(new InventoryPage(_mainVM.InventoryVM));
+            //MainFrame.Navigate(new InventoryView(_mainVM.InventoryVM));
+            MainFrame.Navigate(new POSView(_mainVM.POSVM));
         }
 
         private void InventoryButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new InventoryPage(_mainVM.InventoryVM));
+            MainFrame.Navigate(new InventoryView(_mainVM.InventoryVM));
         }
 
         private void POSButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new POSPage(_mainVM.POSVM));
+            MainFrame.Navigate(new POSView(_mainVM.POSVM));
         }
     }
 }
