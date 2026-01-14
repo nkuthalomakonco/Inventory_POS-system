@@ -1,6 +1,6 @@
 # Inventory / POS (Point of Sale) Application
 
-A desktop Inventory & POS system built from start to finish using WPF, .NET 8, and MVVM.
+A desktop Inventory & POS system WPF, .NET 8, and MVVM.
 The goal of this project is to create a real, production-ready application that can be easily extended, improved, or deployed.
 
 📌 Project Goals
@@ -55,7 +55,7 @@ Persistence
 
 Save inventory and sales data to JSON
 
-Designed to switch to a database later (SQLite / SQL Server)
+Designed to switch to a database later (SQL Server)
 
 Nice-to-Have Features (Planned)
 
@@ -69,10 +69,10 @@ Receipt printing
 
 🛠 Technology Stack
 Category	Technology
-Framework	.NET 8
+Framework	.NET 7/8/9
 UI	WPF
 Architecture	MVVM
-Data Storage	JSON (upgradeable to SQLite / SQL Server)
+Data Storage	JSON (upgradeable to SQL Server)
 IDE	Visual Studio
 📂 Project Structure
 InventoryPOS/
