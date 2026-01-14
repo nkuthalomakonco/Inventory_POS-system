@@ -8,7 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Inventory_POS_system
 {
@@ -20,7 +20,6 @@ namespace Inventory_POS_system
         public MainWindow()
         {
             InitializeComponent();
-            //this.DataContext = new InventoryViewModel(); 
             DataContext = new MainViewModel();
         }
     }
