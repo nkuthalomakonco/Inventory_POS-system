@@ -71,6 +71,8 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Margin="5">
+                    <Button Content="+" Command="{Binding IncreaseQuantityCommand}" Width="40" Margin="2"/>
+                    <Button Content="-" Command="{Binding DecreaseQuantityCommand}" Width="40" Margin="2"/>
                     <Button Content="Remove"
                         Command="{Binding RemoveFromCartCommand}"
                         Width="100"

@@ -42,6 +42,8 @@ namespace Inventory_POS_system.ViewModels
         public ICommand AddToCartCommand { get; }
         public ICommand RemoveFromCartCommand { get; }
         public ICommand CheckoutCommand { get; }
+        public ICommand IncreaseQuantityCommand { get; }
+        public ICommand DecreaseQuantityCommand { get; }
 
         public POSViewModel(InventoryViewModel inventory)
         {
@@ -50,6 +52,8 @@ namespace Inventory_POS_system.ViewModels
             AddToCartCommand = new RelayCommand(AddToCart, CanAddToCart);
             RemoveFromCartCommand = new RelayCommand(RemoveFromCart, CanRemoveFromCart);
             CheckoutCommand = new RelayCommand(Checkout, CanCheckout);
+            IncreaseQuantityCommand = new RelayCommand(IncreaseQuantity, CanIncreaseQuantity);
+            DecreaseQuantityCommand = new RelayCommand(DecreaseQuantity, CanDecreaseQuantity);
 
             Cart.CollectionChanged += (s, e) =>
             {
@@ -57,7 +61,27 @@ namespace Inventory_POS_system.ViewModels
                 UpdateCommands();
             };
         }
+        // INCREASE/DECREASE QUANTITY
+        private void IncreaseQuantity()
+        {
+            if (SelectedCartItem.Quantity < SelectedCartItem.Product.Stock)
+            {
+                SelectedCartItem.Quantity++;
+                OnPropertyChanged(nameof(Total));
+            }
+        }
 
+        private bool CanIncreaseQuantity() => SelectedCartItem != null && SelectedCartItem.Quantity < SelectedCartItem.Product.Stock;
+
+        private void DecreaseQuantity()
+        {
+            if (SelectedCartItem.Quantity > 1)
+            {
+                SelectedCartItem.Quantity--;
+                OnPropertyChanged(nameof(Total));
+            }
+        }
+        private bool CanDecreaseQuantity() => SelectedCartItem != null && SelectedCartItem.Quantity > 1;
         // ADD TO CART
         private void AddToCart()
         {
