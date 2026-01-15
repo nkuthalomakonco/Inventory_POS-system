@@ -32,7 +32,8 @@ namespace Inventory_POS_system.ViewModels
         public CartItem SelectedCartItem
         {
             get => _selectedCartItem;
-            set { _selectedCartItem = value; OnPropertyChanged(); UpdateCommands(); }
+            set { _selectedCartItem = value; OnPropertyChanged(); UpdateCommands(); 
+            }
         }
 
         // Totals
@@ -64,10 +65,13 @@ namespace Inventory_POS_system.ViewModels
         // INCREASE/DECREASE QUANTITY
         private void IncreaseQuantity()
         {
+            if (SelectedCartItem == null)
+                return;
+
             if (SelectedCartItem.Quantity < SelectedCartItem.Product.Stock)
             {
                 SelectedCartItem.Quantity++;
-                OnPropertyChanged(nameof(Total));
+                OnPropertyChanged(nameof(Total)); // 🔥 update footer total
             }
         }
 
@@ -143,6 +147,9 @@ namespace Inventory_POS_system.ViewModels
             ((RelayCommand)AddToCartCommand).RaiseCanExecuteChanged();
             ((RelayCommand)RemoveFromCartCommand).RaiseCanExecuteChanged();
             ((RelayCommand)CheckoutCommand).RaiseCanExecuteChanged();
+
+            ((RelayCommand)IncreaseQuantityCommand).RaiseCanExecuteChanged();
+            ((RelayCommand)DecreaseQuantityCommand).RaiseCanExecuteChanged();
         }
     }
 }
