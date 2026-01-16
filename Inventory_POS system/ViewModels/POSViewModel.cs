@@ -6,6 +6,7 @@ Commands: AddToCart, RemoveFromCart, Checkout
 */
 
 using Inventory_POS_system.Models;
+using Inventory_POS_system.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -173,9 +174,24 @@ namespace Inventory_POS_system.ViewModels
             {
                 item.Product.Stock -= item.Quantity;
             }
-
+            SaveSale();
             Cart.Clear();
             OnPropertyChanged(nameof(Total));
+        }
+        private void SaveSale()
+        {
+            var sale = new Sale
+            {
+                Date = DateTime.Now,
+                Items = Cart.Select(c => new CartItem { Product = c.Product, Quantity = c.Quantity }).ToList(),
+                Total = Total,
+                Tax = Total * TaxRate,
+                Discount = Discount
+            };
+
+            var sales = JsonService.Load<List<Sale>>("sales.json") ?? new List<Sale>();
+            sales.Add(sale);
+            JsonService.Save("sales.json", sales);
         }
 
         private bool CanCheckout()
