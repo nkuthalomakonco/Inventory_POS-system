@@ -7,6 +7,7 @@ Commands: AddToCart, RemoveFromCart, Checkout
 
 using Inventory_POS_system.Models;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace Inventory_POS_system.ViewModels
@@ -32,10 +33,28 @@ namespace Inventory_POS_system.ViewModels
         public CartItem SelectedCartItem
         {
             get => _selectedCartItem;
-            set { _selectedCartItem = value; OnPropertyChanged(); UpdateCommands(); 
+            set
+            {
+                if (_selectedCartItem != null)
+                    _selectedCartItem.PropertyChanged -= CartItem_PropertyChanged;
+
+                _selectedCartItem = value;
+                OnPropertyChanged();
+
+                if (_selectedCartItem != null)
+                    _selectedCartItem.PropertyChanged += CartItem_PropertyChanged;
+
+                UpdateCommands();
             }
         }
-
+        private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(CartItem.Quantity))
+            {
+                OnPropertyChanged(nameof(Total));
+                UpdateCommands();
+            }
+        }
         // Totals
         public decimal Total => Cart.Sum(i => i.LineTotal);
 
@@ -86,6 +105,7 @@ namespace Inventory_POS_system.ViewModels
             }
         }
         private bool CanDecreaseQuantity() => SelectedCartItem != null && SelectedCartItem.Quantity > 1;
+
         // ADD TO CART
         private void AddToCart()
         {
