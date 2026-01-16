@@ -71,12 +71,15 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Margin="5">
+                    <TextBlock Text="{Binding TotalWithTax, StringFormat=Total + Tax: {0:C}, ConverterCulture=en-ZA}" Width="100" Margin="5" />
+
                     <Button Content="+" Command="{Binding IncreaseQuantityCommand}" Width="40" Margin="2"/>
                     <Button Content="-" Command="{Binding DecreaseQuantityCommand}" Width="40" Margin="2"/>
                     <Button Content="Remove"
                         Command="{Binding RemoveFromCartCommand}"
                         Width="100"
                         Margin="5"/>
+                    
                 </StackPanel>
 
                 <!-- CHECKOUT -->

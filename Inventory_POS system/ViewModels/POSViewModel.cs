@@ -56,7 +56,27 @@ namespace Inventory_POS_system.ViewModels
             }
         }
         // Totals
-        public decimal Total => Cart.Sum(i => i.LineTotal);
+        public decimal Total => Cart.Sum(i => i.LineTotal);//SubTotal 
+
+        //Automatically calculate tax and allow applying discounts on the total.
+        private decimal _taxRate = 0.15m; // 15% tax
+        public decimal TaxRate
+        {
+            get => _taxRate;
+            set { _taxRate = value; OnPropertyChanged(); OnPropertyChanged(nameof(TotalWithTax)); }
+        }
+
+        private decimal _discount;
+        public decimal Discount
+        {
+            get => _discount;
+            set { _discount = value; OnPropertyChanged(); OnPropertyChanged(nameof(TotalWithTax)); }
+        }
+
+        // New computed total
+        public decimal TotalWithTax => (Total - Discount) * (1 + TaxRate);
+
+
 
         // Commands
         public ICommand AddToCartCommand { get; }
@@ -125,7 +145,8 @@ namespace Inventory_POS_system.ViewModels
                 });
             }
 
-            OnPropertyChanged(nameof(Total));
+            //OnPropertyChanged(nameof(Total));
+            OnPropertyChanged(nameof(TotalWithTax));
         }
 
         private bool CanAddToCart()
