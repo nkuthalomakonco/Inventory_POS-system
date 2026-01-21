@@ -44,7 +44,7 @@
                 </DataGrid>
                 
                 <StackPanel Grid.Row="1" Margin="5">
-                    <TextBox Text="{Binding BarcodeProductToAdd, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding ScannedBarcode, UpdateSourceTrigger=PropertyChanged}"
                     Style="{StaticResource BarcodeTextBoxStyle}" KeyDown="BarcodeTextBox_KeyDown"/>
 
                     <Button Content="Add to Cart"

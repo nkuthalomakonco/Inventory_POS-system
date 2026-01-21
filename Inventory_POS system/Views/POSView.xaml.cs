@@ -29,7 +29,8 @@ namespace Inventory_POS_system.Views
 
         private void BarcodeTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.Key == Key.Enter && DataContext is POSViewModel vm)
+                vm.ScanBarcodeCommand.Execute(null);
         }
 
     }

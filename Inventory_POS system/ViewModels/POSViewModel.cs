@@ -20,6 +20,7 @@ using Inventory_POS_system.Models;
 using Inventory_POS_system.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace Inventory_POS_system.ViewModels
@@ -161,8 +162,20 @@ namespace Inventory_POS_system.ViewModels
             get => _scannedBarcode;
             set
             {
-                _scannedBarcode = value;
-                OnPropertyChanged();
+                if (_scannedBarcode != value)
+                {
+                    _scannedBarcode = value;
+                    OnPropertyChanged(nameof(ScannedBarcode));
+
+                    // Debug output
+                    Debug.WriteLine($"ScannedBarcode set to: '{_scannedBarcode}'");
+
+                    // **Deselect product whenever typing**
+                    SelectedProduct = null;
+
+                    // Force command re-evaluation
+                    ((RelayCommand)AddToCartCommand).RaiseCanExecuteChanged();
+                }
             }
         }
 
@@ -244,14 +257,30 @@ namespace Inventory_POS_system.ViewModels
         /// </summary>
         private void ScanBarcode()
         {
-            if (string.IsNullOrWhiteSpace(ScannedBarcode))
-                return;
+            if (string.IsNullOrWhiteSpace(ScannedBarcode)) return;
 
             var product = Products.FirstOrDefault(p => p.Barcode == ScannedBarcode);
             if (product != null)
-                AddToCart(product);
+            {
+                // Deselect any selected product in the DataGrid
+                SelectedProduct = null;
+
+                var existingItem = Cart.FirstOrDefault(c => c.Product.Id == product.Id);
+                if (existingItem != null)
+                {
+                    if (existingItem.Quantity < product.Stock)
+                        existingItem.Quantity++;
+                }
+                else
+                {
+                    Cart.Add(new CartItem { Product = product, Quantity = 1 });
+                }
+
+                OnPropertyChanged(nameof(TotalWithTax));
+            }
 
             ScannedBarcode = string.Empty;
+            ((RelayCommand)AddToCartCommand).RaiseCanExecuteChanged();
         }
 
         #endregion
@@ -263,23 +292,26 @@ namespace Inventory_POS_system.ViewModels
         /// </summary>
         private void AddToCart()
         {
-            var existingItem = Cart.FirstOrDefault(c => c.Product.Id == SelectedProduct.Id);
+            var productToAdd = SelectedProduct ?? Products.FirstOrDefault(p => p.Barcode == ScannedBarcode);
+            if (productToAdd == null) return;
 
+            var existingItem = Cart.FirstOrDefault(c => c.Product.Id == productToAdd.Id);
             if (existingItem != null)
             {
-                if (existingItem.Quantity < SelectedProduct.Stock)
+                if (existingItem.Quantity < productToAdd.Stock)
                     existingItem.Quantity++;
             }
             else
             {
                 Cart.Add(new CartItem
                 {
-                    Product = SelectedProduct,
+                    Product = productToAdd,
                     Quantity = 1
                 });
             }
 
             OnPropertyChanged(nameof(TotalWithTax));
+            ScannedBarcode = string.Empty;
         }
 
         /// <summary>
@@ -289,11 +321,11 @@ namespace Inventory_POS_system.ViewModels
         {
             if (product == null) return;
 
-            var item = Cart.FirstOrDefault(c => c.Product == product);
-            if (item != null)
+            var existingItem = Cart.FirstOrDefault(c => c.Product.Id == product.Id);
+            if (existingItem != null)
             {
-                if (item.Quantity < product.Stock)
-                    item.Quantity++;
+                if (existingItem.Quantity < product.Stock)
+                    existingItem.Quantity++;
             }
             else
             {
@@ -303,8 +335,13 @@ namespace Inventory_POS_system.ViewModels
             OnPropertyChanged(nameof(TotalWithTax));
         }
 
-        private bool CanAddToCart() =>
-            SelectedProduct != null && SelectedProduct.Stock > 0;
+        private bool CanAddToCart()
+        {
+            // Either a product is selected OR a valid scanned barcode exists
+            var productToAdd = SelectedProduct ?? Products.FirstOrDefault(p => p.Barcode == ScannedBarcode);
+            return productToAdd != null && productToAdd.Stock > 0;
+        }
+
 
         /// <summary>
         /// Removes selected item from cart
