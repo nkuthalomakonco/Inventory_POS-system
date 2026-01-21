@@ -81,6 +81,12 @@ namespace Inventory_POS_system.ViewModels
             get => _stock;
             set { _stock = value; OnPropertyChanged(); UpdateCommandStates(); }
         }
+        private string _barcode;
+        public string Barcode
+        {
+            get => _barcode;
+            set { _barcode = value; OnPropertyChanged(); }
+        }
 
         // Commands
         public ICommand AddCommand { get; }
@@ -112,6 +118,7 @@ namespace Inventory_POS_system.ViewModels
                 Id = Products.Any() ? Products.Max(p => p.Id) + 1 : 1,
                 Name = Name,
                 Price = Price,
+                Barcode = Barcode,
                 Stock = Stock
             };
 
@@ -132,6 +139,7 @@ namespace Inventory_POS_system.ViewModels
             SelectedProduct.Name = Name;
             SelectedProduct.Price = Price;
             SelectedProduct.Stock = Stock;
+            SelectedProduct.Barcode = Barcode;
 
             OnPropertyChanged(nameof(Products));
             ClearInputs();
@@ -160,6 +168,7 @@ namespace Inventory_POS_system.ViewModels
             Name = string.Empty;
             Price = 0;
             Stock = 0;
+            Barcode = string.Empty;
             SelectedProduct = null;
         }
 

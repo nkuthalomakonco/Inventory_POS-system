@@ -3,125 +3,94 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Inventory_POS_system.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-        Title="Product Manager" Height="600" Width="800">
-
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Product Manager">
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- Header -->
             <RowDefinition Height="*"/>
+            <!-- DataGrid -->
             <RowDefinition Height="Auto"/>
+            <!-- Form -->
             <RowDefinition Height="Auto"/>
+            <!-- Buttons -->
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Grid.Row="0" Text="Product Management" 
-                   FontSize="24" FontWeight="Bold" 
+        <TextBlock Grid.Row="0" Text="Product Management"
+                   FontSize="24" FontWeight="Bold"
                    Margin="0,0,0,20"/>
 
         <!-- DataGrid Section -->
-        <Border Grid.Row="1" BorderBrush="#CCCCCC" BorderThickness="1" 
+        <Border Grid.Row="1" BorderBrush="#CCCCCC" BorderThickness="1"
                 CornerRadius="5" Margin="0,0,0,20">
-            <DataGrid x:Name="ProductsGrid"
-                      ItemsSource="{Binding Products}"
-                      SelectedItem="{Binding SelectedProduct}"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      SelectionMode="Single"
-                      IsReadOnly="True"
-                      GridLinesVisibility="Horizontal"
-                      RowHeight="35"
-                      HeadersVisibility="Column"
-                      VerticalScrollBarVisibility="Auto">
+            <DataGrid ItemsSource="{Binding Products}"
+                  SelectedItem="{Binding SelectedProduct}"
+                  Style="{StaticResource CustomDataGridStyle}"
+                  RowStyle="{StaticResource CustomDataGridRowStyle}"
+                  ColumnHeaderStyle="{StaticResource CustomDataGridColumnHeaderStyle}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*"/>
-                    <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C2 ,ConverterCulture=en-ZA}" Width="*"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C2, ConverterCulture=en-ZA}" Width="*"/>
+                    <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" Width="*"/>
                     <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" Width="*"/>
                 </DataGrid.Columns>
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="BorderThickness" Value="0"/>
-                    </Style>
-                </DataGrid.RowStyle>
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#F5F5F5"/>
-                        <Setter Property="BorderBrush" Value="#DDDDDD"/>
-                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                        <Setter Property="Height" Value="40"/>
-                        <Setter Property="FontWeight" Value="SemiBold"/>
-                        <Setter Property="Padding" Value="10,0"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
             </DataGrid>
         </Border>
 
         <!-- Form Section -->
-        <Border Grid.Row="2" BorderBrush="#E0E0E0" BorderThickness="1" 
+        <Border Grid.Row="2" BorderBrush="#E0E0E0" BorderThickness="1"
                 CornerRadius="5" Padding="20" Margin="0,0,0,20"
                 Background="#F9F9F9">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <!-- Name -->
                     <RowDefinition Height="Auto"/>
+                    <!-- Price -->
                     <RowDefinition Height="Auto"/>
+                    <!-- Barcode -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Stock -->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Form Labels -->
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" 
-                           VerticalAlignment="Center" Margin="0,0,15,10"
-                           FontWeight="SemiBold"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Price:" 
-                           VerticalAlignment="Center" Margin="0,0,15,10"
-                           FontWeight="SemiBold"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Stock:" 
-                           VerticalAlignment="Center" Margin="0,0,15,10"
-                           FontWeight="SemiBold"/>
+                <!-- Labels -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" VerticalAlignment="Center" Margin="0,0,15,10" FontWeight="SemiBold"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Price:" VerticalAlignment="Center" Margin="0,0,15,10" FontWeight="SemiBold"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Barcode:" VerticalAlignment="Center" Margin="0,0,15,10" FontWeight="SemiBold"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Stock:" VerticalAlignment="Center" Margin="0,0,15,10" FontWeight="SemiBold"/>
 
-                <!-- Form Inputs -->
-                <TextBox Grid.Row="0" Grid.Column="1" 
-                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="0,0,0,10" Padding="8" 
-                         Height="35" VerticalContentAlignment="Center"/>
-
-                <TextBox Grid.Row="1" Grid.Column="1" 
-                         Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="0,0,0,10" Padding="8" 
-                         Height="35" VerticalContentAlignment="Center"/>
-
-                <TextBox Grid.Row="2" Grid.Column="1" 
-                         Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}"
-                         Padding="8" Height="35" 
-                         VerticalContentAlignment="Center"/>
+                <!-- Inputs -->
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Padding="8" Height="35" VerticalContentAlignment="Center"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Padding="8" Height="35" VerticalContentAlignment="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Barcode, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Padding="8" Height="35" VerticalContentAlignment="Center"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}" Padding="8" Height="35" VerticalContentAlignment="Center"/>
             </Grid>
         </Border>
 
-        <!-- Button Section (Corrected) -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" 
-                    HorizontalAlignment="Right">
-            <Button Content="Add" Command="{Binding AddCommand}" 
-                    Width="100" Height="35" Padding="10,0"
-                    Background="#4CAF50" Foreground="White"
-                    BorderThickness="0" FontWeight="SemiBold"
-                    Margin="0,0,10,0"/>
-
-            <Button Content="Edit" Command="{Binding EditCommand}" 
-                    Width="100" Height="35" Padding="10,0"
-                    Background="#2196F3" Foreground="White"
-                    BorderThickness="0" FontWeight="SemiBold"
-                    Margin="0,0,10,0"/>
-
-            <Button Content="Delete" Command="{Binding DeleteCommand}" 
-                    Width="100" Height="35" Padding="10,0"
-                    Background="#F44336" Foreground="White"
-                    BorderThickness="0" FontWeight="SemiBold"/>
+        <!-- Button Section -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Add" Command="{Binding AddCommand}" Width="100" Height="35" Padding="10,0"
+                    Background="#4CAF50" Foreground="White" BorderThickness="0" FontWeight="SemiBold" Margin="0,0,10,0"/>
+            <Button Content="Edit" Command="{Binding EditCommand}" Width="100" Height="35" Padding="10,0"
+                    Background="#2196F3" Foreground="White" BorderThickness="0" FontWeight="SemiBold" Margin="0,0,10,0"/>
+            <Button Content="Delete" Command="{Binding DeleteCommand}" Width="100" Height="35" Padding="10,0"
+                    Background="#F44336" Foreground="White" BorderThickness="0" FontWeight="SemiBold"/>
         </StackPanel>
     </Grid>
 </Page>

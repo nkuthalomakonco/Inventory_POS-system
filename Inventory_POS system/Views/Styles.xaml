@@ -14,4 +14,33 @@
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
+
+        <!-- Style for DataGrid Rows -->
+        <Style TargetType="DataGridRow" x:Key="CustomDataGridRowStyle">
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <!-- Style for DataGrid Column Headers -->
+        <Style TargetType="DataGridColumnHeader" x:Key="CustomDataGridColumnHeaderStyle">
+            <Setter Property="Background" Value="#F5F5F5"/>
+            <Setter Property="BorderBrush" Value="#DDDDDD"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="10,0"/>
+        </Style>
+
+        <!-- Optional: Style for DataGrid itself if you want to reuse -->
+    <Style TargetType="DataGrid" x:Key="CustomDataGridStyle">
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="CanUserDeleteRows" Value="False"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="RowHeight" Value="35"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+    </Style>
+
 </ResourceDictionary>
