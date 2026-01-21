@@ -26,5 +26,11 @@ namespace Inventory_POS_system.Views
             InitializeComponent();
             DataContext = vm;
         }
+
+        private void BarcodeTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
     }
 }

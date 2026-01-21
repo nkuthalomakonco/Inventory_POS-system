@@ -1,0 +1,28 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram name="POS UML" id="0">
+    <mxGraphModel dx="1042" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="&lt;&lt;class&gt;&gt;&#xa;Product&#xa;────────────&#xa;+ Id : int&#xa;+ Name : string&#xa;+ Price : decimal&#xa;+ Stock : int&#xa;+ Barcode : string" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="94" y="250" width="260" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="&lt;&lt;class&gt;&gt;&#xa;CartItem&#xa;────────────&#xa;+ Product : Product&#xa;- _quantity : int&#xa;+ Quantity : int&#xa;+ LineTotal : decimal {derived}&#xa;────────────&#xa;INotifyPropertyChanged" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="414" y="250" width="320" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="&lt;&lt;class&gt;&gt;&#xa;Sale&#xa;────────────&#xa;+ Id : int&#xa;+ Items : List&lt;CartItem&gt;&#xa;+ Total : decimal&#xa;+ Date : DateTime&#xa;+ ReceiptNumber : string&#xa;+ SubTotal : decimal&#xa;+ Tax : decimal&#xa;+ Discount : decimal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="314" y="510" width="360" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="" style="endArrow=block;html=1;strokeColor=#000000;" parent="1" source="3" target="2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="1..*" style="endArrow=block;html=1;strokeColor=#000000;" parent="1" source="4" target="3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EXs_QuN5xZkj-5-8gp6i-6" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 12px; font-weight: normal;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/h1&gt;&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(15, 15, 15); font-family: Roboto, Arial, sans-serif; font-size: 20px;&quot;&gt;UML class diagrams&lt;/span&gt;&lt;/h1&gt;&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 12px; font-weight: normal;&quot;&gt;https://www.youtube.com/watch?v=6XrL5jXmTwM&lt;/span&gt;&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="296" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
