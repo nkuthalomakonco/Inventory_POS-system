@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- LEFT: PRODUCT LIST -->
-        <GroupBox Header="Products" Margin="5">
+        <GroupBox Header="Products" Margin="5" Style="{StaticResource DarkGroupBoxStyle}" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -31,10 +31,12 @@
                 </Grid.RowDefinitions>
 
                 <DataGrid ItemsSource="{Binding Products}"
-                      SelectedItem="{Binding SelectedProduct}"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      Margin="5">
+                          SelectedItem="{Binding SelectedProduct}"
+                          Style="{StaticResource CustomDataGridStyle}"
+                          ColumnHeaderStyle="{StaticResource CustomDataGridColumnHeaderStyle}"
+                          RowStyle="{StaticResource CustomDataGridRowStyle}"
+                          CellStyle="{StaticResource DarkDataGridCellStyle}"
+                          Margin="5">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                         <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
@@ -56,7 +58,7 @@
         </GroupBox>
 
         <!-- RIGHT: CART -->
-        <GroupBox Header="Cart" Grid.Column="1" Margin="5">
+        <GroupBox Header="Cart" Grid.Column="1" Margin="5" Style="{StaticResource DarkGroupBoxStyle}" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -67,6 +69,7 @@
                 <DataGrid ItemsSource="{Binding Cart}"
                       SelectedItem="{Binding SelectedCartItem}"
                       AutoGenerateColumns="False"
+                      Style="{StaticResource CustomDataGridStyle}"
                       IsReadOnly="True"
                       Margin="5">
                     <DataGrid.Columns>
@@ -79,19 +82,42 @@
 
                 <!-- CART ACTIONS -->
                 <StackPanel Grid.Row="1"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Right"
-                        Margin="5">
-                    <TextBlock Text="{Binding TotalWithTax, StringFormat=Total + Tax: {0:C}, ConverterCulture=en-ZA}" Width="100" Margin="5" />
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Margin="8">
 
-                    <Button Content="+" Command="{Binding IncreaseQuantityCommand}" Width="40" Margin="2"/>
-                    <Button Content="-" Command="{Binding DecreaseQuantityCommand}" Width="40" Margin="2"/>
+                    <!-- TOTAL -->
+                    <Border Background="#222"
+            CornerRadius="6"
+            Padding="10,6"
+            Margin="6">
+                        <TextBlock Text="{Binding TotalWithTax,
+                          StringFormat=Total + Tax: {0:C},
+                          ConverterCulture=en-ZA}"
+                   Foreground="#7CFF7C"
+                   FontWeight="Bold"
+                   FontSize="14"/>
+                    </Border>
+
+                    <!-- INCREASE -->
+                    <Button Content="＋"
+            Command="{Binding IncreaseQuantityCommand}"
+            Style="{StaticResource CartActionButtonStyle}"/>
+
+                    <!-- DECREASE -->
+                    <Button Content="−"
+            Command="{Binding DecreaseQuantityCommand}"
+            Style="{StaticResource CartActionButtonStyle}"/>
+
+                    <!-- REMOVE -->
                     <Button Content="Remove"
-                        Command="{Binding RemoveFromCartCommand}"
-                        Width="100"
-                        Margin="5"/>
-                    
+            Command="{Binding RemoveFromCartCommand}"
+            Width="110"
+            Style="{StaticResource DangerButtonStyle}"/>
+
                 </StackPanel>
+
 
                 <!-- CHECKOUT -->
                 <Border Grid.Row="2"
@@ -115,6 +141,7 @@
                         <TextBlock Text="TOTAL:"
                    FontSize="18"
                    FontWeight="Bold"
+                   Foreground="DarkGreen"
                    VerticalAlignment="Center"
                    Grid.Row="0"
                    Grid.Column="0"/>

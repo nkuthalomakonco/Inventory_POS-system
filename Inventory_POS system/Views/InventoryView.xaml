@@ -29,7 +29,7 @@
 
         <!-- Header -->
         <TextBlock Grid.Row="0" Text="Product Management"
-                   FontSize="24" FontWeight="Bold"
+                   FontSize="24" FontWeight="Bold" Foreground="DarkGreen"
                    Margin="0,0,0,20"/>
 
         <!-- DataGrid Section -->
