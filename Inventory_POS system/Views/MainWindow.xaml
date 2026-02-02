@@ -30,8 +30,42 @@
             Padding="2"
             MouseLeftButtonDown="Border_MouseLeftButtonDown">
 
-        <!-- Main content -->
-        <DockPanel Style="{StaticResource MainDockPanelStyle}">
+        <DockPanel>
+
+            <!-- Custom title bar -->
+            <DockPanel DockPanel.Dock="Top" Height="40" Background="#252525">
+
+                <!-- App title -->
+                <TextBlock Text="Inventory POS System"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold" />
+
+                <!-- Spacer -->
+                <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <!-- Minimize button -->
+                        <Button Content="–"
+                                Width="40"
+                                Height="30"
+                                Margin="0,5,5,5"
+                                Click="MinimizeButton_Click"
+                                Style="{StaticResource DarkButtonStyle}" />
+
+                        <!-- Close button -->
+                        <Button Content="X"
+                                Width="40"
+                                Height="30"
+                                Margin="0,5,5,5"
+                                Click="CloseButton_Click"
+                                Style="{StaticResource DarkButtonStyle}" />
+                    </StackPanel>
+                </DockPanel>
+
+            </DockPanel>
 
             <!-- Navigation buttons -->
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">

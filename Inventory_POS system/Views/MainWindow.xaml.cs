@@ -45,5 +45,17 @@ namespace Inventory_POS_system
             if (e.ButtonState == MouseButtonState.Pressed)
                 DragMove();
         }
+
+        // Minimize window
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        // Close window
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
