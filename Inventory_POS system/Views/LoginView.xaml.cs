@@ -24,5 +24,10 @@ namespace Inventory_POS_system.Views
         {
             InitializeComponent();
         }
+
+        private void PasswordBox_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

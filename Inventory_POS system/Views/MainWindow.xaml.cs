@@ -40,5 +40,10 @@ namespace Inventory_POS_system
         {
             MainFrame.Navigate(new POSView(_mainVM.POSVM));
         }
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+                DragMove();
+        }
     }
 }

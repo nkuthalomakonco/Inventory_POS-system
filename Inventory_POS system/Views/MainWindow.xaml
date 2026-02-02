@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inventory_POS_system.Views"
         mc:Ignorable="d"
-        Title="Inventory POS System" Height="800" Width="1000" WindowStartupLocation="CenterScreen">
-    
+        Title="Inventory POS System"
+        Height="800"
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+    <!-- Merge styles -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,15 +22,36 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <!-- Use styled DockPanel -->
-    <DockPanel Style="{StaticResource MainDockPanelStyle}">
-        <!-- Navigation buttons at top -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">
-            <Button Content="Inventory" Width="100" Margin="5" Click="InventoryButton_Click" Style="{StaticResource DarkButtonStyle}" />
-            <Button Content="POS" Width="100" Margin="5" Click="POSButton_Click" Style="{StaticResource DarkButtonStyle}" />
-        </StackPanel>
+    <!-- Outer border provides rounded corners -->
+    <Border CornerRadius="12"
+            Background="#1E1E1E"
+            BorderBrush="#333"
+            BorderThickness="1"
+            Padding="2"
+            MouseLeftButtonDown="Border_MouseLeftButtonDown">
 
-        <!-- Frame to host Pages -->
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="#1C1C1C"/>
-    </DockPanel>
+        <!-- Main content -->
+        <DockPanel Style="{StaticResource MainDockPanelStyle}">
+
+            <!-- Navigation buttons -->
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">
+                <Button Content="Inventory"
+                        Width="100"
+                        Margin="5"
+                        Click="InventoryButton_Click"
+                        Style="{StaticResource DarkButtonStyle}" />
+                <Button Content="POS"
+                        Width="100"
+                        Margin="5"
+                        Click="POSButton_Click"
+                        Style="{StaticResource DarkButtonStyle}" />
+            </StackPanel>
+
+            <!-- Frame to host Pages -->
+            <Frame x:Name="MainFrame"
+                   NavigationUIVisibility="Hidden"
+                   Background="#1C1C1C"/>
+        </DockPanel>
+
+    </Border>
 </Window>
