@@ -1,4 +1,5 @@
-﻿using Inventory_POS_system.ViewModels;
+﻿using Inventory_POS_system.Services;
+using Inventory_POS_system.ViewModels;
 using Inventory_POS_system.Views;
 using System.Text;
 using System.Windows;
@@ -49,6 +50,13 @@ namespace Inventory_POS_system
 
         private void POSButton_Click(object sender, RoutedEventArgs e)
         {
+            // Clear any logged-in user
+            AuthService.Logout();
+
+            // Refresh Inventory button state
+            _mainVM.RefreshPermissions();
+
+            // Navigate to POS page
             MainFrame.Navigate(new POSView(_mainVM.POSVM));
         }
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
