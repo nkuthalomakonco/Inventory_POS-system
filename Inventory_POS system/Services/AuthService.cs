@@ -1,6 +1,7 @@
 ﻿using Inventory_POS_system.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,10 @@ namespace Inventory_POS_system.Services
             if (users == null) return false;
 
             var user = users.FirstOrDefault(u =>
-                u.UserName == username &&
+                u.Username == username &&
                 u.Password == password);
+
+            //Console.WriteLine(user);
 
             if (user == null) return false;
 

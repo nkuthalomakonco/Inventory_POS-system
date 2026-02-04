@@ -73,7 +73,7 @@
                         Width="100"
                         Margin="5"
                         Click="InventoryButton_Click"
-                        IsEnabled="{Binding CanAccessInventory}"
+                        
                         Style="{StaticResource DarkButtonStyle}" />
                 <Button Content="POS"
                         Width="100"

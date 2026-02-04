@@ -28,12 +28,23 @@ namespace Inventory_POS_system
 
             // Navigate to default page
             //MainFrame.Navigate(new InventoryView(_mainVM.InventoryVM));
-            MainFrame.Navigate(new POSView(_mainVM.POSVM));
+            //MainFrame.Navigate(new POSView(_mainVM.POSVM));
+            // Navigate to login page inside the frame
+            MainFrame.Navigate(new LoginView());
         }
 
         private void InventoryButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new InventoryView(_mainVM.InventoryVM));
+            if (!_mainVM.CanAccessInventory)
+            {
+                // Show login page instead
+                MainFrame.Navigate(new LoginView());
+            }
+            else
+            {
+                // User already authorized
+                MainFrame.Navigate(new InventoryView(_mainVM.InventoryVM));
+            }
         }
 
         private void POSButton_Click(object sender, RoutedEventArgs e)

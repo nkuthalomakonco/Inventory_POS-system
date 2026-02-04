@@ -10,6 +10,9 @@ namespace Inventory_POS_system.Views
         public LoginView()
         {
             InitializeComponent();
+            this.DataContext = new LoginViewModel();
+            UsernameTextBox.Text = "admin"; // Default username for testing
+            PasswordBox.Password = "admin"; // Default password for testing
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -35,8 +38,15 @@ namespace Inventory_POS_system.Views
             }
             else
             {
-                MessageBox.Show("Invalid username or password", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //MessageBox.Show("Invalid username or password", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is LoginViewModel vm)
+                vm.Password = PasswordBox.Password;
+        }
+
     }
 }

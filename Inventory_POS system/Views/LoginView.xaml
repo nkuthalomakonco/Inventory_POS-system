@@ -22,8 +22,8 @@
                            Margin="0,0,0,20"/>
 
                 <!-- Username -->
+                <!--Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"-->
                 <TextBox x:Name="UsernameTextBox"
-                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                          Margin="0,0,0,10"
                          Height="35"
                          FontSize="14"
@@ -35,6 +35,7 @@
 
                 <!-- Password -->
                 <PasswordBox x:Name="PasswordBox"
+                             PasswordChanged="PasswordBox_PasswordChanged"
                              Margin="0,0,0,20"
                              Height="35"
                              FontSize="14"
@@ -52,7 +53,7 @@
                         Background="#444"
                         Foreground="#EAEAEA"
                         BorderBrush="#555"
-                        Margin="0,0,0,0"
+                        Margin="0,0,0,0" Click="LoginButton_Click"
                         />
 
                 <!-- Error Message -->

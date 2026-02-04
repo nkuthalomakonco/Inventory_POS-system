@@ -35,19 +35,26 @@ namespace Inventory_POS_system.ViewModels
         {
             LoginCommand = new RelayCommand(Login);
         }
-
         private void Login()
         {
             if (AuthService.Login(Username, Password))
             {
-                ErrorMessage = string.Empty;
-                LoginSucceeded?.Invoke();
+                var mainWindow = App.Current.MainWindow as MainWindow;
+                var mainVM = mainWindow?.DataContext as MainViewModel;
+
+                mainVM?.RefreshPermissions();
+
+                // Go to Inventory AFTER login
+                mainWindow?.MainFrame.Navigate(
+                    new Views.InventoryView(mainVM.InventoryVM)
+                );
             }
             else
             {
                 ErrorMessage = "Invalid username or password";
             }
         }
+
     }
 
 }
