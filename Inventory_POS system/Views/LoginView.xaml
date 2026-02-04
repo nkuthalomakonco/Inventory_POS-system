@@ -22,7 +22,7 @@
                            Margin="0,0,0,20"/>
 
                 <!-- Username -->
-                <TextBox 
+                <TextBox x:Name="UsernameTextBox"
                          Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                          Margin="0,0,0,10"
                          Height="35"
@@ -42,8 +42,7 @@
                              Foreground="#EAEAEA"
                              BorderBrush="#555"
                              BorderThickness="1"
-                             Padding="5"
-                             PasswordChanged="PasswordBox_PasswordChanged"/>
+                             Padding="5"/>
 
                 <!-- Login Button -->
                 <Button Content="Login"
