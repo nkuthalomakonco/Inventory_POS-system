@@ -17,13 +17,11 @@ namespace Inventory_POS_system.Services
             var users = JsonService.Load<List<User>>("users.json");
             if (users == null) return false;
 
-            var user = users.FirstOrDefault(u =>
-                u.Username == username &&
-                u.Password == password);
-
-            //Console.WriteLine(user);
-
+            var user = users.FirstOrDefault(u => u.Username == username);
             if (user == null) return false;
+
+            if (!PasswordHelper.VerifyPassword(password, user.PasswordHash, user.Salt))
+                return false;
 
             CurrentUser = user;
             return true;

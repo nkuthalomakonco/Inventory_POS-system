@@ -1,4 +1,5 @@
-﻿using Inventory_POS_system.Services;
+﻿using Inventory_POS_system.Models;
+using Inventory_POS_system.Services;
 using Inventory_POS_system.ViewModels;
 using Inventory_POS_system.Views;
 using System.Text;
@@ -32,6 +33,9 @@ namespace Inventory_POS_system
             //MainFrame.Navigate(new POSView(_mainVM.POSVM));
             // Navigate to login page inside the frame
             MainFrame.Navigate(new LoginView());
+
+            GenerateUsers generateUsers = new GenerateUsers();
+
         }
 
         private void InventoryButton_Click(object sender, RoutedEventArgs e)

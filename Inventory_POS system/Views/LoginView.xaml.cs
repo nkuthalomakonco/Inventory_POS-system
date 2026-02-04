@@ -12,7 +12,7 @@ namespace Inventory_POS_system.Views
             InitializeComponent();
             this.DataContext = new LoginViewModel();
             UsernameTextBox.Text = "admin"; // Default username for testing
-            PasswordBox.Password = "admin"; // Default password for testing
+            PasswordBox.Password = "admin123"; // Default password for testing
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
