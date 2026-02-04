@@ -20,36 +20,34 @@ namespace Inventory_POS_system.ViewModels
             set { _password = value; OnPropertyChanged(); }
         }
 
-        private string _errorMessage;
+        private string _error;
         public string ErrorMessage
         {
-            get => _errorMessage;
-            set { _errorMessage = value; OnPropertyChanged(); }
+            get => _error;
+            set { _error = value; OnPropertyChanged(); }
         }
 
         public ICommand LoginCommand { get; }
 
+        public event Action LoginSucceeded;
+
         public LoginViewModel()
         {
-            LoginCommand = new RelayCommand(Login, CanLogin);
+            LoginCommand = new RelayCommand(Login);
         }
-
-        private bool CanLogin() =>
-            !string.IsNullOrWhiteSpace(Username) &&
-            !string.IsNullOrWhiteSpace(Password);
 
         private void Login()
         {
-            // Replace this with real authentication
-            if (Username == "admin" && Password == "password")
+            if (AuthService.Login(Username, Password))
             {
-                // Navigate to InventoryView
-                //NavigationService.NavigateTo("InventoryView");
+                ErrorMessage = string.Empty;
+                LoginSucceeded?.Invoke();
             }
             else
             {
-                ErrorMessage = "Invalid username or password!";
+                ErrorMessage = "Invalid username or password";
             }
         }
     }
+
 }

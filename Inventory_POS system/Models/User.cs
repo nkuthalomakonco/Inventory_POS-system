@@ -15,6 +15,7 @@ namespace Inventory_POS_system.Models
         public string Password { get; set; }
         public string UserName { get; set; }
         public int Level { get; set; }
+        public string Role { get; set; }     // Admin / Cashier
 
     }
 }
