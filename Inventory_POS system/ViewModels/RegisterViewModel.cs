@@ -43,7 +43,9 @@ namespace Inventory_POS_system.ViewModels
         {
             "Admin",
             "User",
-            "Guest"
+            "Guest",
+            "Manager",
+            "Cashier"
         };
 
         public ICommand RegisterCommand { get; }
