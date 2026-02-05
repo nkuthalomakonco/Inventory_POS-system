@@ -6,6 +6,12 @@ using System.Text;
 
 namespace Inventory_POS_system.Models
 {
+    enum UserRole
+    {
+        Admin,
+        Manager,
+        Cashier
+    }
     public class User
     {   
         public int Id { get; set; }

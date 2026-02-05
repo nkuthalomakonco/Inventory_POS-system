@@ -1,5 +1,4 @@
 ﻿using Inventory_POS_system.Models;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -60,7 +59,6 @@ namespace Inventory_POS_system.Services
             var json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText("users.json", json);
 
-            Console.WriteLine("Users.json created with secure hashed passwords!");
         }
     }
 }

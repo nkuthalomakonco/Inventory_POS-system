@@ -1,0 +1,126 @@
+﻿<Window x:Class="Inventory_POS_system.Views.RegisterView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Inventory_POS_system.ViewModels"
+        xmlns:local="clr-namespace:Inventory_POS_system.Views"
+        Title="Register User"
+        Height="450"
+        Width="500"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Drop shadow effect -->
+            <DropShadowEffect x:Key="DropShadowEffect"
+                              Color="Black"
+                              BlurRadius="15"
+                              ShadowDepth="0"
+                              Opacity="0.5"/>
+
+            <!-- Converters -->
+            <local:NullOrEmptyToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!-- Outer Border with Shadow -->
+    <Border Background="#1C1C1C"
+            CornerRadius="15"
+            Padding="0"
+            Effect="{StaticResource DropShadowEffect}">
+
+        <Grid Margin="10">
+
+            <!-- Header Bar with Close Button -->
+            <DockPanel LastChildFill="True" Margin="0,0,0,10">
+                <TextBlock Text="Register User"
+                           Foreground="#EAEAEA"
+                           FontWeight="Bold"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"/>
+                <Button Content="X"
+                        Style="{StaticResource WindowButtonStyle}"
+                        Width="30"
+                        Height="30"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Click="CloseButton_Click"/>
+            </DockPanel>
+
+            <!-- Inner Content -->
+            <Border Background="#2D2D30"
+                    CornerRadius="10"
+                    Padding="30"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0,40,0,0">
+
+                <StackPanel Width="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <!-- Username -->
+                    <TextBox Text="{Binding Username}"
+                             Tag="Username"
+                             Style="{StaticResource PlaceholderTextBoxStyle}"
+                             Height="40"
+                             FontSize="16"
+                             Margin="0,0,0,10"
+                             HorizontalAlignment="Stretch"/>
+
+                    <!-- Password -->
+                    <PasswordBox x:Name="PasswordBox"
+                                 Tag="Password"
+                                 PasswordChanged="PasswordBox_PasswordChanged"
+                                 Style="{StaticResource PasswordBoxPlaceholderStyle}"
+                                 Height="40"
+                                 FontSize="16"
+                                 Margin="0,0,0,10"
+                                 HorizontalAlignment="Stretch"/>
+
+                    <!-- Role ComboBox with placeholder -->
+                    <Grid Height="40" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="47*"/>
+                            <ColumnDefinition Width="153*"/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox ItemsSource="{Binding Roles}" FontSize="16" Height="40"
+                                              SelectedItem="{Binding Role, Mode=TwoWay}"
+                                              Style="{StaticResource RoundedComboBoxStyle}"
+                                              IsEditable="False" Grid.ColumnSpan="2"/>
+
+                        <TextBlock Text="Select Role"
+                                   Visibility="{Binding Role, Converter={StaticResource NullToVisibilityConverter}}"
+                                               Foreground="Gray" FontSize="16" Height="40"
+                                               Margin="10,0,10,0"
+                                               VerticalAlignment="Center"
+                                     IsHitTestVisible="False"  
+                                      Grid.ColumnSpan="2"/>
+                    </Grid>
+
+                    <!-- Register Button -->
+                    <Button Content="Register"
+                            Command="{Binding RegisterCommand}"
+                            Style="{StaticResource RoundedButtonStyle}"
+                            Height="45"
+                            FontSize="16"
+                            HorizontalAlignment="Stretch"/>
+
+                    <!-- Error Message -->
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Foreground="Orange"
+                               TextAlignment="Center"
+                               Margin="0,10,0,0"
+                               FontSize="14"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
