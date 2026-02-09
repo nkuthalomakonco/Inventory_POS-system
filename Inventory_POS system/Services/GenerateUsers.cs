@@ -16,7 +16,7 @@ namespace Inventory_POS_system.Services
             var users = new List<User>();
 
             // Create Admin user
-            var (adminHash, adminSalt) = PasswordHelper.HashPassword("admin123");
+            var (adminHash, adminSalt) = PasswordHelper.HashPassword("admin");
             users.Add(new User
             {
                 Username = "admin",
@@ -26,25 +26,10 @@ namespace Inventory_POS_system.Services
             });
 
             // Another Admin
-            var (admin2Hash, admin2Salt) = PasswordHelper.HashPassword("1234");
-            users.Add(new User
-            {
-                Username = "user",
-                Password = admin2Hash,
-                PasswordHash = admin2Hash,
-                Salt = admin2Salt,
-                Role = "Admin"
-            });
+
 
             // Cashier
-            var (cashierHash, cashierSalt) = PasswordHelper.HashPassword("2026");
-            users.Add(new User
-            {
-                Username = "cashier",
-                PasswordHash = cashierHash,
-                Salt = cashierSalt,
-                Role = "Cashier"
-            });
+
 
             // Another Cashier
             var (meHash, meSalt) = PasswordHelper.HashPassword("2026");
