@@ -5,50 +5,37 @@ namespace Inventory_POS_system.Helpers
 {
     public static class PasswordBoxHelper
     {
-        public static readonly DependencyProperty PlaceholderProperty =
+        public static readonly DependencyProperty BoundPasswordProperty =
             DependencyProperty.RegisterAttached(
-                "Placeholder",
+                "BoundPassword",
                 typeof(string),
                 typeof(PasswordBoxHelper),
-                new PropertyMetadata(string.Empty, OnPlaceholderChanged));
+                new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
-        public static string GetPlaceholder(DependencyObject obj) => (string)obj.GetValue(PlaceholderProperty);
-        public static void SetPlaceholder(DependencyObject obj, string value) => obj.SetValue(PlaceholderProperty, value);
+        public static string GetBoundPassword(DependencyObject obj)
+            => (string)obj.GetValue(BoundPasswordProperty);
 
-        private static void OnPlaceholderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static void SetBoundPassword(DependencyObject obj, string value)
+            => obj.SetValue(BoundPasswordProperty, value);
+
+        private static void OnBoundPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is PasswordBox passwordBox)
             {
                 passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
+
+                // Only set if different
+                if ((string)e.NewValue != passwordBox.Password)
+                    passwordBox.Password = (string)e.NewValue;
+
                 passwordBox.PasswordChanged += PasswordBox_PasswordChanged;
             }
         }
 
         private static void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (sender is PasswordBox pb)
-            {
-                var placeholder = GetPlaceholderTextBlock(pb);
-                if (placeholder != null)
-                {
-                    placeholder.Visibility = string.IsNullOrEmpty(pb.Password)
-                        ? Visibility.Visible
-                        : Visibility.Collapsed;
-                }
-            }
-        }
-
-        private static TextBlock GetPlaceholderTextBlock(PasswordBox pb)
-        {
-            if (pb.Parent is Grid grid)
-            {
-                foreach (var child in grid.Children)
-                {
-                    if (child is TextBlock tb && tb.Tag?.ToString() == "Placeholder")
-                        return tb;
-                }
-            }
-            return null;
+            if (sender is PasswordBox passwordBox)
+                SetBoundPassword(passwordBox, passwordBox.Password);
         }
     }
 }

@@ -59,6 +59,7 @@ namespace Inventory_POS_system.ViewModels
 
         private void Register()
         {
+
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(Role))
             {
                 ErrorMessage = "All fields are required!";

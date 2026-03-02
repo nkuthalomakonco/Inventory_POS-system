@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Inventory_POS_system.ViewModels"
         xmlns:local="clr-namespace:Inventory_POS_system.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:helpers="clr-namespace:Inventory_POS_system.Helpers"
         Title="Register User"
         Height="450"
         Width="500"
@@ -66,24 +68,25 @@
 
                 <StackPanel Width="400" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                    <!-- Username -->
-                    <TextBox Text="{Binding Username}"
-                             Tag="Username"
-                             Style="{StaticResource PlaceholderTextBoxStyle}"
-                             Height="40"
-                             FontSize="16"
-                             Margin="0,0,0,10"
-                             HorizontalAlignment="Stretch"/>
+                        <TextBox
+                            Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            materialDesign:HintAssist.Hint="Username"
+                            FontFamily="Segoe UI"
+                            Foreground="White"
+                            FontSize="16"
+                            Height="60"
+                            Margin="0,0,0,20"/>
 
-                    <!-- Password -->
-                    <PasswordBox x:Name="PasswordBox"
-                                 Tag="Password"
-                                 PasswordChanged="PasswordBox_PasswordChanged"
-                                 Style="{StaticResource PasswordBoxPlaceholderStyle}"
-                                 Height="40"
-                                 FontSize="16"
-                                 Margin="0,0,0,10"
-                                 HorizontalAlignment="Stretch"/>
+                    <PasswordBox
+                            Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                            materialDesign:HintAssist.Hint="Password"
+                            materialDesign:HintAssist.Foreground="White"
+                            Foreground="White"
+                            FontSize="16"
+                            Height="50"
+                            Margin="0,0,0,20"
+                            helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}"/>
 
                     <!-- Role ComboBox with placeholder -->
                     <Grid Height="40" Margin="0,0,0,20">
