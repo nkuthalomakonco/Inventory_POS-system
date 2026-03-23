@@ -1,8 +1,6 @@
 # Inventory / POS (Point of Sale) Application
 
-<img width="1250" height="1000" alt="Image" src="https://github.com/user-attachments/assets/7a364d76-96a6-418f-b66d-d2dee6653a2d" />
 
-<img width="1250" height="1000" alt="Image" src="https://github.com/user-attachments/assets/9a2ec364-1e24-46f7-b91d-cda479f6f682" />
 
 A desktop Inventory & POS system WPF, .NET 8, and MVVM.
 The goal of this project is to create a real, production-ready application that can be easily extended, improved, or deployed.
