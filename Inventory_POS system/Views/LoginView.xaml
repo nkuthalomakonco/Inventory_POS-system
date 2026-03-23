@@ -3,15 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Inventory_POS_system.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="400" d:DesignWidth="370"
       Title="">
 
-    <Grid Background="#1C1C1C">
+    <Grid Background="#801C1C1C">
         <Border Background="#2D2D30" CornerRadius="10" Padding="30"
                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                Width="400" Height="350" >
+                Width="400" Height="360" >
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
                 <TextBlock Text="Login"
@@ -23,26 +24,24 @@
 
                 <!-- Username -->
                 <TextBox x:Name="UsernameTextBox"
-             Margin="0,0,0,10"
-             Height="35"
-             FontSize="14"
-             Background="#1F1F1F"
-             Foreground="#EAEAEA"
-             BorderBrush="#555"
-             BorderThickness="1"
-             Padding="5"/>
+                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        materialDesign:HintAssist.Hint="Username"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="60"
+                        Margin="0,0,0,20"/>
 
                 <!-- Password -->
-                <PasswordBox x:Name="PasswordBox"
-                 PasswordChanged="PasswordBox_PasswordChanged"
-                 Margin="0,0,0,10"
-                 Height="35"
-                 FontSize="14"
-                 Background="#1F1F1F"
-                 Foreground="#EAEAEA"
-                 BorderBrush="#555"
-                 BorderThickness="1"
-                 Padding="5"/>
+                <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged"
+                        Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                        materialDesign:HintAssist.Hint="Password"
+                        materialDesign:HintAssist.Foreground="White"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="50"
+                        Margin="0,0,0,20"
+                        />
 
                 <!-- Login Button -->
                 <Button Content="Login"

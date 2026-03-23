@@ -1,11 +1,10 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Inventory_POS_system.Views
+namespace Inventory_POS_system.Helpers
 {
     public class ZeroToVisibilityConverter : IValueConverter
     {
