@@ -69,7 +69,7 @@
                 <DataGrid ItemsSource="{Binding Cart}"
                       SelectedItem="{Binding SelectedCartItem}"
                       AutoGenerateColumns="False"
-                      Style="{StaticResource CustomDataGridStyle}"
+                      Style="{StaticResource CustomDataGridStyle}" ColumnHeaderStyle="{StaticResource CustomDataGridColumnHeaderStyle}"
                       IsReadOnly="True"
                       Margin="5">
                     <DataGrid.Columns>

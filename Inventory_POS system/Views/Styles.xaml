@@ -21,17 +21,18 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
-        <!-- Style for DataGrid Column Headers -->
-        <Style TargetType="DataGridColumnHeader" x:Key="CustomDataGridColumnHeaderStyle">
-            <Setter Property="Background" Value="#F5F5F5"/>
-            <Setter Property="BorderBrush" Value="#DDDDDD"/>
-            <Setter Property="BorderThickness" Value="0,0,0,1"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="10,0"/>
-        </Style>
+    <!-- Style for DataGrid Column Headers -->
+    <Style TargetType="DataGridColumnHeader" x:Key="CustomDataGridColumnHeaderStyle">
+        <Setter Property="Background" Value="#F5F5F5"/>
+        <Setter Property="BorderBrush" Value="#DDDDDD"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Padding" Value="10,0"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
 
-        <!-- Optional: Style for DataGrid itself if you want to reuse -->
+    <!-- Optional: Style for DataGrid itself if you want to reuse -->
     <Style TargetType="DataGrid" x:Key="CustomDataGridStyle">
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="CanUserAddRows" Value="False"/>
@@ -61,6 +62,8 @@
         <Setter Property="Padding" Value="10,5"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="BorderBrush" Value="#444"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -69,35 +72,50 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="BorderBrush" Value="#444"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Effect">
+        <Setter Property="Template">
             <Setter.Value>
-                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="0"/>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="3">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="0"/>
+                        </Border.Effect>
+                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#555558" Offset="0"/>
+                                        <GradientStop Color="#3F3F46" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#666"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#1E1E1E" Offset="0"/>
+                                        <GradientStop Color="#2D2D30" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.4"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#444" Offset="0"/>
-                            <GradientStop Color="#2D2D30" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-            <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#1E1E1E" Offset="0"/>
-                            <GradientStop Color="#2D2D30" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
     </Style>
     <!-- ========================= -->
     <!-- SMALL CART ACTION BUTTON -->
