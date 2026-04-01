@@ -50,7 +50,7 @@ namespace Inventory_POS_system.ViewModels
 
         public ICommand RegisterCommand { get; }
 
-        private const string FilePath = "users.json";
+        private const string FilePath = "Files/users.json";
 
         public RegisterViewModel()
         {

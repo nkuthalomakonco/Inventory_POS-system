@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 0,
+    "Name": null,
+    "Surname": null,
+    "Email": null,
+    "Password": null,
+    "Username": "admin",
+    "Level": 0,
+    "Role": "Admin",
+    "PasswordHash": "1p8zDOENHNfr6/Zxe3UUKa13AipV08iLtnK8PwqPJoU=",
+    "Salt": "lQ71KoQqbC6B8tY\u002B5ICgsA=="
+  },
+  {
+    "Id": 0,
+    "Name": null,
+    "Surname": null,
+    "Email": null,
+    "Password": null,
+    "Username": "nkuthalo",
+    "Level": 0,
+    "Role": "Cashier",
+    "PasswordHash": "qZ/sTz1G4ji6pvHrNVVQwQPcbcQPn85rHBQqW9IP/t4=",
+    "Salt": "GvMpYmMy7cCnKL08kd2ogw=="
+  }
+]

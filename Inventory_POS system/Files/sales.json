@@ -1,0 +1,73 @@
+[
+  {
+    "Id": 0,
+    "Items": [
+      {
+        "Product": {
+          "Id": 5,
+          "Name": "Mango",
+          "Price": 12,
+          "Stock": 59,
+          "Barcode": "9785012749360"
+        },
+        "_quantity": 1,
+        "Quantity": 1,
+        "LineTotal": 12
+      },
+      {
+        "Product": {
+          "Id": 7,
+          "Name": "Orange Juice",
+          "Price": 12,
+          "Stock": 88,
+          "Barcode": "9783209481768"
+        },
+        "_quantity": 1,
+        "Quantity": 1,
+        "LineTotal": 12
+      },
+      {
+        "Product": {
+          "Id": 12,
+          "Name": "Bread White",
+          "Price": 15,
+          "Stock": 49,
+          "Barcode": "9786214859302"
+        },
+        "_quantity": 1,
+        "Quantity": 1,
+        "LineTotal": 15
+      },
+      {
+        "Product": {
+          "Id": 9,
+          "Name": "Milk",
+          "Price": 10,
+          "Stock": 98,
+          "Barcode": "9789125840737"
+        },
+        "_quantity": 1,
+        "Quantity": 1,
+        "LineTotal": 10
+      },
+      {
+        "Product": {
+          "Id": 13,
+          "Name": "Bread Brown",
+          "Price": 16,
+          "Stock": 44,
+          "Barcode": "9783019476281"
+        },
+        "_quantity": 1,
+        "Quantity": 1,
+        "LineTotal": 16
+      }
+    ],
+    "Total": 65,
+    "Date": "2026-01-21T20:18:56.3589777+02:00",
+    "ReceiptNumber": null,
+    "SubTotal": 0,
+    "Tax": 9.75,
+    "Discount": 0
+  }
+]

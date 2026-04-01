@@ -45,7 +45,7 @@ namespace Inventory_POS_system.ViewModels
         public ObservableCollection<Product> Products { get; set; }
 
         // JSON File Path
-        private const string InventoryFile = "products.json";
+        private const string InventoryFile = "Files/products.json";
 
         // Selected Product (from DataGrid/List)
         private Product _selectedProduct;

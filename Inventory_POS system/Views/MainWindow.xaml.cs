@@ -34,7 +34,7 @@ namespace Inventory_POS_system
             // Navigate to login page inside the frame
             MainFrame.Navigate(new LoginView());
 
-            GenerateUsers generateUsers = new GenerateUsers();
+            //GenerateUsers generateUsers = new GenerateUsers();
 
         }
 

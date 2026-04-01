@@ -42,7 +42,7 @@ namespace Inventory_POS_system.Services
 
             // Save to JSON file
             var json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText("users.json", json);
+            File.WriteAllText("Files/users.json", json);
 
         }
     }

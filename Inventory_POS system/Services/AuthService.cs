@@ -14,7 +14,7 @@ namespace Inventory_POS_system.Services
 
         public static bool Login(string username, string password)
         {
-            var users = JsonService.Load<List<User>>("users.json");
+            var users = JsonService.Load<List<User>>("Files/users.json");
             if (users == null) return false;
 
             var user = users.FirstOrDefault(u => u.Username == username);
